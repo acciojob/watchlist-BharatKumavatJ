@@ -52,14 +52,18 @@ public class MovieController {
         @GetMapping("/get-movies-by-director-name/{director}")
         public ResponseEntity<List<String>> getMoviesByDirectorName(@PathVariable String director) throws Exception {
 
-                List<Movie> listOfMoviesMadeByDirector = movieService.getListOfMoviesMadeByDirector(director);
+                try{
+                        List<Movie> listOfMoviesMadeByDirector = movieService.getListOfMoviesMadeByDirector(director);
 
-                List<String> movieNames = new ArrayList<>();
+                        List<String> movieNames = new ArrayList<>();
 
-                for(int i = 0; i < listOfMoviesMadeByDirector.size(); i++){
-                        movieNames.add(listOfMoviesMadeByDirector.get(i).getName());
+                        for(int i = 0; i < listOfMoviesMadeByDirector.size(); i++){
+                                movieNames.add(listOfMoviesMadeByDirector.get(i).getName());
+                        }
+                        return new ResponseEntity<>(movieNames, HttpStatus.FOUND);
+                }catch (Exception e){
+                        throw e;
                 }
-                return new ResponseEntity<>(movieNames, HttpStatus.FOUND);
         }
 
         // 4. Get Movie by movie name: GET /movies/get-movie-by-name/{name} // working fine
@@ -67,8 +71,12 @@ public class MovieController {
         @GetMapping("/get-movie-by-name/{name}")
         public ResponseEntity<Movie> getMovieByName(@PathVariable String name) throws Exception {
 
-                Movie movie = movieService.getMovieByName(name);
-                return new ResponseEntity<>(movie, HttpStatus.FOUND);
+                try {
+                        Movie movie = movieService.getMovieByName(name);
+                        return new ResponseEntity<>(movie, HttpStatus.FOUND);
+                }catch (Exception e){
+                        throw e;
+                }
         }
 
         //5 .Get Director by director name: GET /movies/get-director-by-name/{name}
@@ -77,8 +85,12 @@ public class MovieController {
         @GetMapping("/get-director-by-name/{name}")
         public ResponseEntity<Director> getDirectorByName(@PathVariable String name) throws Exception {
 
-                Director director = movieService.getDirector(name);
-                return new ResponseEntity<>(director, HttpStatus.FOUND);
+                try {
+                        Director director = movieService.getDirector(name);
+                        return new ResponseEntity<>(director, HttpStatus.FOUND);
+                }catch (Exception e){
+                        throw e;
+                }
         }
 
 
@@ -86,14 +98,20 @@ public class MovieController {
 
         @GetMapping("/get-all-movies") // working fine
         public ResponseEntity<List<String>> findAllMovies() throws Exception {
-                List<Movie> allMovies = movieService.getAllMovies();
-                List<String> allMoviesNames  = new ArrayList<>();
+                try {
 
-                for(int i = 0; i < allMovies.size(); i++){
-                        allMoviesNames.add(allMovies.get(i).getName());
+                        List<Movie> allMovies = movieService.getAllMovies();
+                        List<String> allMoviesNames = new ArrayList<>();
+
+                        for (int i = 0; i < allMovies.size(); i++) {
+                                allMoviesNames.add(allMovies.get(i).getName());
+                        }
+                        return new ResponseEntity<>(allMoviesNames, HttpStatus.FOUND);
+                } catch (Exception e) {
+                        throw e;
                 }
-                return new ResponseEntity<>(allMoviesNames, HttpStatus.FOUND);
         }
+
 
         //  8.  Delete a director and its movies from the records: DELETE /movies/delete-director-by-name
 
