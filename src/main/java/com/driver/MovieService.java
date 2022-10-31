@@ -25,22 +25,22 @@ public class MovieService {
 
     }
 
-    public Movie getMovieByName(String movieName){
+    public Movie getMovieByName(String movieName) throws Exception {
         Movie movie = movieRepository.getMovieByName(movieName);
         return movie;
     }
 
-    public Director getDirector(String directorName){
+    public Director getDirector(String directorName) throws Exception {
         Director director = movieRepository.getDirectorByName(directorName);
         return director;
     }
 
-    public List<Movie> getListOfMoviesMadeByDirector(String directorName){
+    public List<Movie> getListOfMoviesMadeByDirector(String directorName) throws Exception {
         List<Movie> listOfMoviesMadeByDirector = movieRepository.getMoviesByDirectorName(directorName);
         return listOfMoviesMadeByDirector;
     }
 
-    public List<Movie> getAllMovies(){
+    public List<Movie> getAllMovies() throws Exception {
 
         return movieRepository.getAllMoviesFromDataBase();
     }

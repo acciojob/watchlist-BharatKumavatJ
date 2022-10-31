@@ -50,7 +50,7 @@ public class MovieController {
 //        6. Get List of movies name for a given director name: GET /movies/get-movies-by-director-name/{director}
 
         @GetMapping("/get-movies-by-director-name/{director}")
-        public ResponseEntity<List<String>> getMoviesByDirectorName(@PathVariable String director){
+        public ResponseEntity<List<String>> getMoviesByDirectorName(@PathVariable String director) throws Exception {
 
                 List<Movie> listOfMoviesMadeByDirector = movieService.getListOfMoviesMadeByDirector(director);
 
@@ -65,7 +65,7 @@ public class MovieController {
         // 4. Get Movie by movie name: GET /movies/get-movie-by-name/{name} // working fine
 
         @GetMapping("/get-movie-by-name/{name}")
-        public ResponseEntity<Movie> getMovieByName(@PathVariable String name){
+        public ResponseEntity<Movie> getMovieByName(@PathVariable String name) throws Exception {
 
                 Movie movie = movieService.getMovieByName(name);
                 return new ResponseEntity<>(movie, HttpStatus.FOUND);
@@ -75,7 +75,7 @@ public class MovieController {
 
         // working fine
         @GetMapping("/get-director-by-name/{name}")
-        public ResponseEntity<Director> getDirectorByName(@PathVariable String name){
+        public ResponseEntity<Director> getDirectorByName(@PathVariable String name) throws Exception {
 
                 Director director = movieService.getDirector(name);
                 return new ResponseEntity<>(director, HttpStatus.FOUND);
@@ -85,7 +85,7 @@ public class MovieController {
         // 7  Get List of all movies added: GET /movies/get-all-movies
 
         @GetMapping("/get-all-movies") // working fine
-        public ResponseEntity<List<String>> findAllMovies(){
+        public ResponseEntity<List<String>> findAllMovies() throws Exception {
                 List<Movie> allMovies = movieService.getAllMovies();
                 List<String> allMoviesNames  = new ArrayList<>();
 
