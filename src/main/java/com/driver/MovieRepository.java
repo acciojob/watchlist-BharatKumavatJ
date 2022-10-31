@@ -80,7 +80,7 @@ public class MovieRepository {
     public  void deleteDirectorByName(String directorName){
 
 
-        List<Movie> listOfMovieMadeByDirector = null;
+        List<Movie> listOfMovieMadeByDirector = new ArrayList<>();
         // it will give me all the movies made by x director (x = directorName)
         if(PairDataBase.containsKey(directorName))
             listOfMovieMadeByDirector = PairDataBase.get(directorName);
@@ -88,7 +88,7 @@ public class MovieRepository {
 
 
         //  I have to remove all the movies made by x director from movie database
-        if(listOfMovieMadeByDirector != null)
+
         for(Movie movie : listOfMovieMadeByDirector){
             MovieDataBase.remove(movie.getName());
         }
@@ -111,7 +111,7 @@ public class MovieRepository {
         // movies : x -> x prop, y - y prop, z -> prop
         // Pair : director Name : movies made by director
 
-        if(PairDataBase != null)
+
         for(String directorName  : PairDataBase.keySet()){
             deleteDirectorByName(directorName);
 

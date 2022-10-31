@@ -101,7 +101,7 @@ public class MovieController {
         public ResponseEntity<String> deleteDirectorByName(@RequestParam("directorName")String directorName){
 
 
-                //movieService.deleteDirectorByName(directorName);
+                movieService.deleteDirectorByName(directorName);
                 return new ResponseEntity<>("Success", HttpStatus.OK);
         }
 
@@ -113,7 +113,7 @@ public class MovieController {
         @DeleteMapping("/delete-director-by-name")
         public ResponseEntity<String> deleteAllDirectors(){
 
-                //movieService.deleteAllMoviesMappedWithDirector();
+                movieService.deleteAllMoviesMappedWithDirector();
                 return new ResponseEntity<>("Success", HttpStatus.OK);
 
         }
