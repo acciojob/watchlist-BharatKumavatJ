@@ -40,9 +40,8 @@ public class MovieRepository {
 
     public void CreatePairAndAddToPairDataBase(String directorName, String movieName){
 
-        System.out.print(movieName);
         Movie movie = MovieDataBase.get(movieName);
-        // System.out.print(movie.getName() + "" + movie.getDurationInMinutes() + " " + "line 44 class repo");
+
         if(PairDataBase.containsKey((directorName)) == true) {
             PairDataBase.get(directorName).add(movie);
         }
@@ -62,9 +61,11 @@ public class MovieRepository {
 
     public List<Movie> getMoviesByDirectorName(String directorName){
 
+        List<Movie> listOfMovies = new ArrayList<>();
         if(PairDataBase.containsKey(directorName))
-        return PairDataBase.get(directorName);
-        return new ArrayList<>();
+            listOfMovies = PairDataBase.get(directorName);
+        return listOfMovies;
+
     }
 
     public List<Movie> getAllMoviesFromDataBase(){
