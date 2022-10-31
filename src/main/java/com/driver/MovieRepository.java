@@ -57,16 +57,20 @@ public class MovieRepository {
 
     public Director getDirectorByName(String directorName){
         return DirectorDataBase.get(directorName);
+
     }
 
     public List<Movie> getMoviesByDirectorName(String directorName){
 
+        if(PairDataBase.containsKey(directorName))
         return PairDataBase.get(directorName);
+        return new ArrayList<>();
     }
 
     public List<Movie> getAllMoviesFromDataBase(){
         List<Movie> listOfAllMovies = new ArrayList<>();
 
+        if(MovieDataBase.size() > 0)
         for(Movie movie : MovieDataBase.values()){
             listOfAllMovies.add(movie);
         }
@@ -75,26 +79,27 @@ public class MovieRepository {
     }
     public  void deleteDirectorByName(String directorName){
 
-        if(PairDataBase.containsKey(directorName) == false) return;
 
+        List<Movie> listOfMovieMadeByDirector = null;
         // it will give me all the movies made by x director (x = directorName)
-        List<Movie> listOfMovieMadeByDirector = PairDataBase.get(directorName);
+        if(PairDataBase.containsKey(directorName))
+            listOfMovieMadeByDirector = PairDataBase.get(directorName);
 
 
-        if(listOfMovieMadeByDirector == null) return;
 
         //  I have to remove all the movies made by x director from movie database
+        if(listOfMovieMadeByDirector != null)
         for(Movie movie : listOfMovieMadeByDirector){
             MovieDataBase.remove(movie.getName());
         }
 
         // I have to remove Entry of x from Director DataBase
-
+        if(DirectorDataBase.containsKey(directorName))
         DirectorDataBase.remove(directorName);
 
 
         // finally i m gonna remove pair
-
+        if(PairDataBase.containsKey(directorName))
         PairDataBase.remove(directorName);
 
     }
@@ -106,12 +111,10 @@ public class MovieRepository {
         // movies : x -> x prop, y - y prop, z -> prop
         // Pair : director Name : movies made by director
 
+        if(PairDataBase != null)
         for(String directorName  : PairDataBase.keySet()){
             deleteDirectorByName(directorName);
-            if(DirectorDataBase.containsKey((directorName)))
-                DirectorDataBase.remove(directorName);
-            if(PairDataBase.containsKey(directorName))
-            PairDataBase.remove(directorName);
+
         }
 
 
