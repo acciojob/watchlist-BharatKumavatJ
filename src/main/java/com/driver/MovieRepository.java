@@ -110,6 +110,7 @@ public class MovieRepository {
             deleteDirectorByName(directorName);
             if(DirectorDataBase.containsKey((directorName)))
                 DirectorDataBase.remove(directorName);
+            if(PairDataBase.containsKey(directorName))
             PairDataBase.remove(directorName);
         }
 
