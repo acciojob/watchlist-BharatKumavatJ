@@ -20,8 +20,8 @@ public class MovieService {
     }
 
     public void addMovieDirectorPair(String directorName, String movieName){
-        Movie movie = movieRepository.getMovieByName(movieName);
-        movieRepository.CreatePairAndAddToPairDataBase(directorName, movie);
+
+        movieRepository.CreatePairAndAddToPairDataBase(directorName, movieName);
 
     }
 

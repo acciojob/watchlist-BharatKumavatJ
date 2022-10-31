@@ -21,24 +21,37 @@ public class MovieRepository {
     private HashMap<String, List<Movie>> PairDataBase = new HashMap<>(); // DirectorName : movies
 
     public void addMovie(Movie movieToBeAdded){
-        MovieDataBase.put(movieToBeAdded.name, movieToBeAdded);
+
+        Movie newMovie = new Movie(movieToBeAdded.name, movieToBeAdded.durationInMinutes, movieToBeAdded.imdbRating);
+        MovieDataBase.put(newMovie.getName(), newMovie);
+
     }
 
     public void addDirector(Director directorToBeAdded){
-        DirectorDataBase.put(directorToBeAdded.name, directorToBeAdded);
+        Director newDirector = new Director(directorToBeAdded.name, directorToBeAdded.numberOfMovies, directorToBeAdded.imdbRating);
+        DirectorDataBase.put(directorToBeAdded.name, newDirector);
     }
 
     public Movie getMovieByName(String name){
-        return MovieDataBase.get(name);
+
+        Movie movieToBeReturned = MovieDataBase.get(name);
+        return movieToBeReturned;
     }
 
-    public void CreatePairAndAddToPairDataBase(String directorName, Movie movie){
-        if(PairDataBase.containsKey((directorName)))
+    public void CreatePairAndAddToPairDataBase(String directorName, String movieName){
+
+        System.out.print(movieName);
+        Movie movie = MovieDataBase.get(movieName);
+        // System.out.print(movie.getName() + "" + movie.getDurationInMinutes() + " " + "line 44 class repo");
+        if(PairDataBase.containsKey((directorName)) == true) {
             PairDataBase.get(directorName).add(movie);
+        }
         else{
+
             List<Movie> listOfMovies = new ArrayList<>();
             listOfMovies.add(movie);
             PairDataBase.put(directorName, listOfMovies);
+
         }
     }
 
@@ -47,6 +60,7 @@ public class MovieRepository {
     }
 
     public List<Movie> getMoviesByDirectorName(String directorName){
+
         return PairDataBase.get(directorName);
     }
 
@@ -61,8 +75,13 @@ public class MovieRepository {
     }
     public  void deleteDirectorByName(String directorName){
 
+        if(PairDataBase.containsKey(directorName) == false) return;
+
         // it will give me all the movies made by x director (x = directorName)
         List<Movie> listOfMovieMadeByDirector = PairDataBase.get(directorName);
+
+
+        if(listOfMovieMadeByDirector == null) return;
 
         //  I have to remove all the movies made by x director from movie database
         for(Movie movie : listOfMovieMadeByDirector){
@@ -89,7 +108,11 @@ public class MovieRepository {
 
         for(String directorName  : PairDataBase.keySet()){
             deleteDirectorByName(directorName);
+            if(DirectorDataBase.containsKey((directorName)))
+                DirectorDataBase.remove(directorName);
+            PairDataBase.remove(directorName);
         }
+
 
     }
 }
