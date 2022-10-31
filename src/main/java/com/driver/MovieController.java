@@ -97,24 +97,24 @@ public class MovieController {
 
         //  8.  Delete a director and its movies from the records: DELETE /movies/delete-director-by-name
 
-//        @DeleteMapping("/movies/delete-director-by-name")
-//        public ResponseEntity<String> deleteDirectorByName(@RequestParam("directorName")String directorName){
-//
-//
-//                movieService.deleteDirectorByName(directorName);
-//                return new ResponseEntity<>("Success", HttpStatus.OK);
-//        }
-//
-//// 9.        Delete all directors and all movies by them from the records: DELETE /movies/delete-director-by-name
-//
-////        Controller Name - deleteAllDirectors
-////                (Note that there can be some movies on your watchlist that aren’t mapped to any of the director. Make sure you do not remove them.)
-//
-//        @DeleteMapping("/delete-director-by-name")
-//        public ResponseEntity<String> deleteAllDirectors(){
-//
-//                movieService.deleteAllMoviesMappedWithDirector();
-//                return new ResponseEntity<>("Success", HttpStatus.OK);
-//
-//        }
+        @DeleteMapping("/movies/delete-director-by-name")
+        public ResponseEntity<String> deleteDirectorByName(@RequestParam("directorName")String directorName){
+
+
+                //movieService.deleteDirectorByName(directorName);
+                return new ResponseEntity<>("Success", HttpStatus.OK);
+        }
+
+// 9.        Delete all directors and all movies by them from the records: DELETE /movies/delete-director-by-name
+
+//        Controller Name - deleteAllDirectors
+//                (Note that there can be some movies on your watchlist that aren’t mapped to any of the director. Make sure you do not remove them.)
+
+        @DeleteMapping("/delete-director-by-name")
+        public ResponseEntity<String> deleteAllDirectors(){
+
+                //movieService.deleteAllMoviesMappedWithDirector();
+                return new ResponseEntity<>("Success", HttpStatus.OK);
+
+        }
 }
