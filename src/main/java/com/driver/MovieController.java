@@ -40,7 +40,7 @@ public class MovieController {
          }
 */
     @PostMapping("/add-director")
-    public ResponseEntity<String> addMovie(@RequestBody()Director director){
+    public ResponseEntity<String> addDirector(@RequestBody()Director director){
         movieService.addDirector(director);
         return  new ResponseEntity<>("Success", HttpStatus.OK);
     }
